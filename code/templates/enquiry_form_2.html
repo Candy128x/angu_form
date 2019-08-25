@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dj_vue_app</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.js"></script>
+    <script>
+    var myApp = angular.module('myApp', [], function($interpolateProvider) {
+    $interpolateProvider.startSymbol('[(');
+    $interpolateProvider.endSymbol(')]');
+    });
+    </script>
+</head>
+<body>
+
+
+<div class="container">
+
+<div class="col-md-4 row" style="float:none; margin:0 auto;" ng-app="formModule" ng-controller="formController">
+
+<br>
+<h3>Enquiry Form</h3>
+<hr>
+<br>
+
+<form action="#" name="enquiryForm">
+  <div class="form-group">
+    <label for="fullName">Full Name:</label>
+    <input type="text" class="form-control" id="fullName">
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email ID:</label>
+    <input type="email" class="form-control" id="email">
+  </div>
+  
+  <div class="form-group">
+    <label for="contactNo">Contact No.:</label>
+    <input type="number" class="form-control" id="contactNo">
+  </div>
+
+  <div class="form-group">
+    <label for="query">Query:</label>
+    <textarea class="form-control" id="query" rows="3"></textarea>
+  </div>
+
+  <br>
+  <button type="submit" class="btn btn-info">Submit</button>
+</form> 
+
+</div>
+
+</div>
+
+<script type="text/javascript">
+var app = angular.module('formModule', []);
+
+</script>
+
+
+<footer>
+    <!--Bottom of the page...-->
+</footer>
+</body>
+</html>
