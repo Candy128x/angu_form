@@ -1,147 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
-    <title>form</title>
-
+    <title>Enqiry Form</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.js"></script>
-<!--     <script>
-    var myApp = angular.module('myApp', [], function($interpolateProvider) {
-    $interpolateProvider.startSymbol('[(');
-    $interpolateProvider.endSymbol(')]');
-    });
-    </script> -->
+    <!--     <script>
+      var myApp = angular.module('myApp', [], function($interpolateProvider) {
+      $interpolateProvider.startSymbol('[(');
+      $interpolateProvider.endSymbol(')]');
+      });
+      </script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-</head>
-<body>
-
-
-<div class="container">
-
-<div class="col-md-4 row" style="float:none; margin:0 auto;" ng-app="formModule" ng-controller="formController">
-
-<br>
-<h3>Enquiry Form</h3>
-<hr>
-<br>
-
-<form name="enquiryForm">
-  <div class="form-group">
-    <label for="fullName">Full Name:</label>
-    <input type="text" class="form-control" id="fullName" name="full_name" ng-model="fullNameModel" placeholder="Dev Smith" required>
-    <span style="color:red;" ng-show="enquiryForm.$invalid">
-      <span ng-show="enquiryForm.full_name.$error.required">
-      * Full Name is required.</span>  
-    </span>
-  </div>
-
-  <div class="form-group">
-    <label for="email">eMail ID:</label>
-    <input type="email" class="form-control" id="email" name="email_id" ng-model="emailIdModel" placeholder="dev@gm.com" required>
-    <span style="color:red;" ng-show="enquiryForm.$invalid">
-      <span ng-show="enquiryForm.email_id.$error.required">
-      * eMail ID is required.</span>  
-    </span>
-  </div>
-  
-  <div class="form-group">
-    <label for="contactNo">Contact No.:</label>
-    <input type="number" class="form-control" id="contactNo" name="contact_no" ng-model="contactNoModel" ng-maxlength="10" placeholder="9819123456">
-    <span style="color:red" ng-show="enquiryForm.$invalid">
-      <span ng-show="enquiryForm.contact_no.$error.maxlength">
-      Only 10 digit required for Contact No.</span>
-    </span>
-  </div>
-
-  <div class="form-group">
-    <label for="query">Query:</label>
-    <textarea class="form-control" id="query" name="query_statment" rows="3" ng-model="queryModel" ng-minlength="12" ng-maxlength="320" placeholder="Query statment..." required></textarea>
-    <span style="color:red" ng-show="enquiryForm.$invalid">
-      <span ng-show="enquiryForm.query_statment.$error.required">
-      * Query feild is required.</span>
-      <span ng-show="enquiryForm.query_statment.$error.minlength">
-      Minimum 12 character required for query.</span>
-      <span ng-show="enquiryForm.query_statment.$error.maxlength">
-      More than 320 character are not allowed for query.</span>
-    </span>
-  </div>
-
-  <br>
-  <button class="btn btn-primary" ng-disabled="enquiryForm.$invalid" ng-click="getRequest()">Submit</button>
-
-  <button class="btn btn-danger" ng-click="reset()">Reset</button>
-
-  <button class="btn btn-info" onclick="location.reload();">
-  <i class="fa fa-refresh" aria-hidden="true"></i>&nbsp Refresh</button>
-</form>
-
-
-<div class="hideByDefault animate-if" ng-show="showErrorMsg">
-  <ul ng-repeat="x in myData">
-    <li><span style="color: red;">{{ x.status }} : {{ x.msg }}</span></li>
-  </ul>
-</div>
-
-<div class="hideByDefault" ng-show="showSearchResult"> 
-<h2>Search Results..</h2>
-</div>
-
-
-</div>
-
-</div>
-
-<script type="text/javascript">
-var app = angular.module('formModule', []);
-app.controller("formController", function($scope, $http) {
-  $scope.fullNameModel = "";
-  //using POST
-  $scope.getRequest = function() {
-    var req = {
-     method: 'POST',
-     url: 'http://localhost/other/lara-api/insi-iim-laravel-api/laravel-api/public/fetch_feeds_from_domain',
-     headers: {
-       'Content-Type': 'application/json'
-     },
-     data: { "request_params": $scope.fullNameModel, "token": "ABCxyz0123" }
-    }
-    $http(req).then(
-      function successCallback(response) {
-        $scope.myData = response.data.results;
-        var jsonErrorData = angular.toJson(response.data.results, true);
-        var jsonErrorDataFlag = jsonErrorData.match(/error/gi);
-          if (jsonErrorDataFlag) {
-          $scope.showErrorMsg = true;
-        } else {
-          $scope.showSearchResult = true;
-        }
-      },
-      function errorCallback(response) {
-        alert("Invalid POST URL OR request parameter :(");
-      }
-    );
-  };
-    $scope.reset = function(){
-       $scope.fullNameModel = null;
-       $scope.emailIdModel = null;
-       $scope.contactNoModel = null;
-       $scope.queryModel = null;
-    }
-});
-</script>
-
-
-<footer>
-    <!--Bottom of the page...-->
-</footer>
-</body>
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-md-4 row" style="float:none; margin:0 auto;" ng-app="formModule" ng-controller="formController">
+        <br>
+        <h3>Enquiry Form</h3>
+        <hr>
+        <br>
+        <form name="enquiryForm">
+          <div class="form-group">
+            <label for="fullName">Full Name:</label>
+            <input type="text" class="form-control" id="fullName" name="full_name" ng-model="fullNameModel" placeholder="Dev Smith" required>
+            <span style="color:red;" ng-show="enquiryForm.$invalid">
+            <span ng-show="enquiryForm.full_name.$error.required">
+            * Full Name is required.</span>  
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="email">eMail ID:</label>
+            <input type="email" class="form-control" id="email" name="email_id" ng-model="emailIdModel" placeholder="dev@gm.com" required>
+            <span style="color:red;" ng-show="enquiryForm.$invalid">
+            <span ng-show="enquiryForm.email_id.$error.required">
+            * eMail ID is required.</span>  
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="contactNo">Contact No.:</label>
+            <input type="number" class="form-control" id="contactNo" name="contact_no" ng-model="contactNoModel" ng-maxlength="10" placeholder="9819123456">
+            <span style="color:red" ng-show="enquiryForm.$invalid">
+            <span ng-show="enquiryForm.contact_no.$error.maxlength">
+            Only 10 digit required for Contact No.</span>
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="query">Query:</label>
+            <textarea class="form-control" id="query" name="query_statment" rows="3" ng-model="queryModel" ng-minlength="12" ng-maxlength="320" placeholder="Query statment..." required></textarea>
+            <span style="color:red" ng-show="enquiryForm.$invalid">
+            <span ng-show="enquiryForm.query_statment.$error.required">
+            * Query feild is required.</span>
+            <span ng-show="enquiryForm.query_statment.$error.minlength">
+            Minimum 12 character required for query.</span>
+            <span ng-show="enquiryForm.query_statment.$error.maxlength">
+            More than 320 character are not allowed for query.</span>
+            </span>
+          </div>
+          <br>
+          <button class="btn btn-primary" ng-disabled="enquiryForm.$invalid" ng-click="getRequest()">Submit</button>
+          <button class="btn btn-danger" ng-click="reset()">Reset</button>
+          <button class="btn btn-info" onclick="location.reload();">
+          <i class="fa fa-refresh" aria-hidden="true"></i>&nbsp Refresh</button>
+        </form>
+        <div class="hideByDefault animate-if" ng-show="showErrorMsg">
+          <ul ng-repeat="x in myData">
+            <li><span style="color: red;">{{ x.status }} : {{ x.msg }}</span></li>
+          </ul>
+        </div>
+        <div class="hideByDefault" ng-show="showSearchResult">
+          <h2>Search Results..</h2>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      var app = angular.module('formModule', []);
+      app.controller("formController", function($scope, $http) {
+        $scope.fullNameModel = "";
+        //using POST
+        $scope.getRequest = function() {
+          var req = {
+           method: 'POST',
+           url: 'http://localhost/other/lara-api/insi-iim-laravel-api/laravel-api/public/fetch_feeds_from_domain',
+           headers: {
+             'Content-Type': 'application/json'
+           },
+           data: { "request_params": $scope.fullNameModel, "token": "ABCxyz0123" }
+          }
+          $http(req).then(
+            function successCallback(response) {
+              $scope.myData = response.data.results;
+              var jsonErrorData = angular.toJson(response.data.results, true);
+              var jsonErrorDataFlag = jsonErrorData.match(/error/gi);
+                if (jsonErrorDataFlag) {
+                $scope.showErrorMsg = true;
+              } else {
+                $scope.showSearchResult = true;
+              }
+            },
+            function errorCallback(response) {
+              alert("Invalid POST URL OR request parameter :(");
+            }
+          );
+        };
+          $scope.reset = function(){
+             $scope.fullNameModel = null;
+             $scope.emailIdModel = null;
+             $scope.contactNoModel = null;
+             $scope.queryModel = null;
+          }
+      });
+    </script>
+    <footer>
+      <!--Bottom of the page...-->
+    </footer>
+  </body>
 </html>
+
